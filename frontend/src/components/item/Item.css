@@ -1,0 +1,34 @@
+.item{
+    width: 250px;
+    border-radius: 15px;  
+    justify-content: center;
+    /* flex-direction: column;
+    display: flex;
+    align-items: center; */
+}
+
+.item img{
+    width: 250px;
+    height: 250px;
+}
+
+.item-info{
+    padding-top: 12px;
+    /* text-align: center; */
+}
+
+.item-info h{
+    font-size: 18px;
+    color:#5D7A55; 
+    font-weight: 600;
+}
+
+.item-info p{
+    color:black;
+    font-size: 16px;
+}
+
+.item:hover{
+    transform: scale(1.05);
+    transition: 0.6s;
+}

@@ -1,0 +1,168 @@
+.navbar {
+  display: flex;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 1px 3px -2px white;
+  background-color: #5D7A55;
+  width: 100%;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  gap: 45px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  margin: 10px auto;
+}
+
+.nav-menu ul {
+  margin: 0;
+}
+
+.nav-menu li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  gap: 3px;
+  /* position: relative; */
+}
+
+.nav-menu li:hover {
+  color: #90af87;
+  transition: all 0.3s ease;
+}
+
+.navbar-link{
+  text-decoration: none;
+  color: #f6edd9;
+}
+
+.navbar-link:hover{
+  color: #90af87;
+  transition: all 0.3s ease;
+}
+
+.nav-menu li hr {
+  /* position: absolute;  */
+  width: 80%;
+  border: none;
+  height: 4px;
+  background: #f6edd9;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+.nav-menu li:hover hr, .nav-menu li.active hr {
+  display: block; 
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-logo p {
+  font-size: 25px;
+  font-weight: 600;
+  color: #f6edd9;
+  margin-left: 15px;
+}
+
+.nav-logo img {
+  width: 75px;
+}
+
+.nav-login-button {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-login-button button {
+  width: 138px;
+  height: 58px;
+  font-size: 18px;
+  font-weight: 600;
+  outline: none;
+  border: 1px solid #90af87;
+  cursor: pointer;
+  border-radius: 75px;
+  color: #5D7A55;
+  background-color: white; 
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.nav-login-button button:hover {
+  background: #90af87;
+  color: white; 
+  transition: all 0.3s ease;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.nav-login-button button:active {
+  background: #f3f3f3;
+}
+
+.navbar-toggle-icon {
+  display: none;
+  cursor: pointer;
+  background: transparent;
+  outline: none;
+  font-size: 2rem;
+  color: #f3f3f3;
+}
+
+@media only screen and (max-width: 1024px) {
+  .nav-menu {
+    display: none;
+  }
+  
+  .nav-menu.responsive-nav {
+    position: fixed;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #5D7A55;
+    gap: 1.5rem;
+    transition: 0.5s;
+    z-index: 1000;
+  }
+
+  .navbar-toggle-icon {
+    display: flex;
+  }
+
+  .responsive-nav-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .responsive-nav-logo img {
+    width: 100px;
+  }
+}
+
+.active-indicator {
+  border: none;
+  height: 2px;
+  background-color: blue;
+  position: absolute;
+  bottom: 0;
+  transition: left 0.3s ease, width 0.3s ease;
+}

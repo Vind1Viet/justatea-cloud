@@ -1,0 +1,103 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: #5D7A55;
+    padding-bottom: 20px;
+    margin-top: 35px;
+}
+
+.footer-logo {
+    padding-top: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-logo p {
+    font-size: 20px;
+    font-weight: 600;
+    color: #f6edd9;
+}
+
+.footer-logo img {
+    width: 75px;
+    height: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    width: 90%;
+    gap: 50px;
+    color: #f6edd9;
+    font-size: 14px;
+}
+
+.footer-about{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    gap: 2px
+}
+
+.footer-about p{
+    font-size: 14px;
+    line-height: 40px;
+    margin: 0;
+}
+
+.footer-contact,
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-content h1 {
+    font-size: 22px;
+}
+
+.footer-content p {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.footer-social a {
+    display: flex;
+    align-items: center;
+    color: #f6edd9;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.footer-social a:hover {
+    color: #ccc;
+}
+
+.footer-social a svg {
+    margin-right: 8px;
+    font-size: 20px;
+}
+
+.footer-quote {
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: #f6edd9;
+    margin-top: 10px;
+}
+
+.footer hr {
+    width: 90%;
+    border: none;
+    border-radius: 10px;
+    height: 3px;
+    background: #f6edd9;
+    margin: 0;
+    margin-bottom: 15px;
+}

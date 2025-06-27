@@ -30,6 +30,10 @@ const Navbar = () => {
           <Link to="/About" className="navbar-link">Về chúng tôi</Link>
           {location.pathname === '/About' ? <hr/>:<></>}
         </li>
+        <li>
+          <Link to="/AddProduct" className="navbar-link">Thêm sản phẩm</Link>
+          {location.pathname === '/AddProduct' ? <hr/>:<></>}
+        </li>
       </ul>
     </div>
   );

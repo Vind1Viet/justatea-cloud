@@ -1,6 +1,16 @@
-.App {
+/* .App {
   text-align: center;
+} */
+
+html, body, #root, .App {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
+
 
 .App-logo {
   height: 40vmin;

@@ -1,6 +1,7 @@
 import React from 'react'
 import './Item.css'
 import {Link} from 'react-router-dom'
+import alt_img from '../assets/alt_img.png'; // Placeholder image if product image fails to load
 
 const Item = ({ id, name, image, price, tag, inStock }) => {
   return (

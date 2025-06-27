@@ -1,11 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import './ProductDisplay.css';
-const ProductDisplay = ({ product }) => {
-  const [uid, setUid] = useState(null); // State to hold user ID
-  const productID = product.id; // Product ID variable
+import alt_img from '../assets/alt_img.png'; // Placeholder image if product image fails to load
+
+const ProductDisplay = () => {
+  const productID = window.location.pathname.split('/').pop(); // Get productID from URL
+  const [product, setProduct] = useState([]);
   const [selectedSize, setSelectedSize] = useState('Vừa');
   const [selectedToppings, setSelectedToppings] = useState([]);
-  const [price, setPrice] = useState(Number(product.price)); // Ensure the price is a number
+  const [price, setPrice] = useState(0);
+
+  useEffect(() => {
+    if (!productID) console.log('No product ID found'); // tránh fetch khi ID chưa có
+
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(`http://13.250.107.161:5000/products/${productID}`);
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        const data = await response.json();
+        console.log('Fetched product:', data);
+        setProduct(data);
+      } catch (error) {
+        console.error('Error fetching product:', error);
+        setProduct(null);
+      }
+    };
+
+    fetchProduct();
+  }, [productID]);
+
+  useEffect(() => {
+    if (product && product.price != null) {
+      setPrice(Number(product.price));
+    }
+  }, [product]);
 
   useEffect(() => {
     // Update price when product changes
@@ -35,41 +62,19 @@ const ProductDisplay = ({ product }) => {
     setPrice(newPrice);
   };
 
-  const handleAddToCart = async () => {
-    if (!uid) {
-      alert("Vui lòng đăng nhập trước khi thêm sản phẩm vào giỏ hàng."); // Prompt user to log in if uid is not available
-      return;
-    }
-
-    const newCustomerCart = {
-      ProductList: [productID], // Use productID variable
-      quantityList: [1], // Set initial quantity for the added product
-      sizeList: [selectedSize], // Add the selected size
-      toppingList: selectedToppings.length > 0 ? [selectedToppings.join(',')] : [null], // Join toppings into a string
-      priceList: [price] // Set initial price to 0
-    };
-
-    try {
-      alert("Sản phẩm đã được thêm vào giỏ hàng!");
-    } catch (error) {
-      console.error("Error adding product to cart:", error);
-      alert("Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng.");
-    }
-  };
-
   return (
+    (product === null) ? (
+      <div className='loading'>Loading...</div> ):(
     <div className='productdisplay'>
       <div className='productdisplay-left'>
         <div className='productdisplay-img'>
-          <img src={product.imageUrl} alt={product.name} />
+          <img src={product.img} alt={alt_img} />
         </div>
       </div>
       <div className='productdisplay-right'>
         <div className='product-info'>
           <h1>{product.name}</h1>
-          {product.inStock?(
           <div className='product-price'>{price.toLocaleString()}đ</div>
-          ):(<div className='product-price'>Hết hàng</div>)}
         </div>
         <div className='choose-size'>
           <p>Chọn size</p>
@@ -113,9 +118,9 @@ const ProductDisplay = ({ product }) => {
           </div>
         </div>):(<div></div>)}
         <p>Thành phần chính: {product.description}</p>
-        <button onClick={handleAddToCart} disabled={!product.inStock}>Thêm vào giỏ hàng</button>
+        <button>Thêm vào giỏ hàng</button>
       </div>
-    </div>
+    </div>)
   );
 };
 

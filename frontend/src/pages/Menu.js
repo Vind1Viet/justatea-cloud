@@ -6,7 +6,6 @@ import './css/Menu.css';
 import banner from '../components/assets/banner.jpg';
 import menu_category from '../components/assets/Category.js';
 import { Link } from 'react-router-dom';
-import product_data from '../components/assets/Product.js'; // Assuming this is the path to your product data
 
 const Menu = () => {
   const [productData, setProductData] = useState([]);
@@ -18,7 +17,7 @@ const Menu = () => {
   const location = useLocation();
 
   useEffect(() => {
-    fetch('http://localhost:5000/products')
+    fetch('http://13.250.107.161:5000/products')
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -67,7 +66,7 @@ const Menu = () => {
 
   return (
     <div className='menu'>
-      <img className='banner' src={banner} alt="" />
+      <img className='banner' src={banner} alt=""/>
       <h1 className='menu-header'>Thực đơn</h1>
       <div className='filter-sort'>
         <select onChange={handleSortChange} value={sortOrder} className='sort-dropdown'>

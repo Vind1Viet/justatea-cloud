@@ -8,7 +8,7 @@ const AddProduct = () => {
   const [productInfo, setProductInfo] = useState({
     name: '',
     price: '',
-    category: 'Tea', // Initialize category as an empty string
+    tag: 'Tea', // Initialize category as an empty string
     image: '',
   });
 
@@ -22,32 +22,31 @@ const AddProduct = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log(productInfo);
     e.preventDefault();
 
     try {
       const cloudfrontDomain = "https://d123abc.cloudfront.net";
       const imageUrl = `${cloudfrontDomain}/products/${productInfo.name}.png`;
 
-      // 2. Gửi ảnh lên Lambda
-      const formData = new FormData();
-      formData.append("file", productInfo.image);
-      formData.append("productName", productInfo.name); // để Lambda đặt đúng tên ảnh
+      // // 2. Gửi ảnh lên Lambda
+      // const formData = new FormData();
+      // formData.append("file", productInfo.image);
+      // formData.append("productName", productInfo.name); // để Lambda đặt đúng tên ảnh
 
-      const uploadRes = await fetch("https://your-api-gateway.amazonaws.com/resize", {
-        method: "POST",
-        body: formData,
-      });
+      // const uploadRes = await fetch("https://your-api-gateway.amazonaws.com/resize", {
+      //   method: "POST",
+      //   body: formData,
+      // });
 
       // 2. Gửi thông tin sản phẩm về backend Node.js/Express
       const productData = {
         name: productInfo.name,
-        price: productInfo.price,
-        category: productInfo.category,
         image: imageUrl,
+        price: productInfo.price,
+        tag: productInfo.tag,
       };
 
-      const res = await fetch('http://your-backend-api-url/products', {
+      const res = await fetch('http://localhost:5000/products', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -60,9 +59,9 @@ const AddProduct = () => {
         console.log('Product added successfully:', productData);
         setProductInfo({
           name: '',
-          price: '',
-          category: 'Tea',
           image: null,
+          price: '',
+          tag: 'Tea',
         });
       } else {
         alert('Lỗi khi thêm sản phẩm!');
@@ -102,9 +101,9 @@ const AddProduct = () => {
           <div className='add-product-fields'>
             <p>Loại sản phẩm</p>
             <select
-              name="category"
+              name="tag"
               className='add-product-selector'
-              value={productInfo.category}
+              value={productInfo.tag}
               onChange={handleChange}
             >
               {menu_category.map((item,index)=>{

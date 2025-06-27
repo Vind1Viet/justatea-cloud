@@ -8,6 +8,7 @@ const app = express();
 
 app.use(cors());
 
+app.use(express.json());
 
 app.get('/products', async (req, res) => {
     try {
@@ -34,11 +35,24 @@ app.get('/products/:id', async (req, res) => {
 });
 
 app.post('/products', async (req, res) => {
-  const { name, price, category, image } = req.body;
-  const query = 'INSERT INTO products (name, price, category, image) VALUES (?, ?, ?, ?)';
-  await db.execute(query, [name, price, category, image]);
-  res.status(201).send({ message: 'Sản phẩm đã được thêm' });
+  const { name, image, price, tag } = req.body;
+
+  // kiểm tra đơn giản
+  if (!name || !price || !tag || !image) {	
+    return res.status(400).json({ error: "Missing product infomation" });
+  }
+
+  const query = 'INSERT INTO Products (name, image, price, tag) VALUES (?, ?, ?, ?)';
+
+  try {
+    await db.execute(query, [name, image, price, tag]);
+    res.status(201).send({ message: 'Product added successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error when adding new product.' });
+  }
 });
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

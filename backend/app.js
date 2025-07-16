@@ -1,13 +1,11 @@
 const express = require('express');
 require('dotenv').config();
 const db = require('./db');
-
 const cors = require('cors');
+const { redisClient, connectRedis } = require('./redis');
 
 const app = express();
-
 app.use(cors());
-
 app.use(express.json());
 
 app.get('/products', async (req, res) => {
@@ -21,13 +19,27 @@ app.get('/products', async (req, res) => {
 });
 
 app.get('/products/:id', async (req, res) => {
-    const productId = req.params.id;    
+    const productId = req.params.id;  
+    const cacheKey = `product:${productId}`;
+
     try {
+        const cachedData = await redisClient.get(cacheKey);
+        if (cachedData) {
+            console.log('Cache hit');
+            return res.json(JSON.parse(cachedData));
+        }
+
         const [rows] = await db.query('SELECT * FROM Products WHERE id = ?', [productId]);
         if (rows.length === 0) {
             return res.status(404).json({ error: 'Product not found' });
         }
-        res.json(rows[0]);
+
+        const product = rows[0];
+
+        // Save to cache for 1 hour
+        await redisClient.set(cacheKey, JSON.stringify(product), { EX: 3600 });
+
+        res.json(product);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Database error' });
@@ -55,6 +67,14 @@ app.post('/products', async (req, res) => {
 
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+(async () => {
+  try {
+    await connectRedis(); // Bắt buộc: chờ kết nối Redis trước
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+    });
+  } catch (err) {
+    console.error('Failed to connect Redis:', err);
+    process.exit(1);
+  }
+})();

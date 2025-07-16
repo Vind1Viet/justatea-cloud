@@ -68,7 +68,7 @@ const ProductDisplay = () => {
     <div className='productdisplay'>
       <div className='productdisplay-left'>
         <div className='productdisplay-img'>
-          <img src={product.img} alt={alt_img} />
+          <img src={product.image} alt={alt_img} />
         </div>
       </div>
       <div className='productdisplay-right'>

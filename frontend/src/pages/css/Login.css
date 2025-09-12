@@ -1,0 +1,133 @@
+/* Container chính */
+.login-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 25px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Tiêu đề */
+.login-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #5d7a55;
+}
+
+/* Thông báo thành công */
+.login-success {
+  text-align: center;
+  color: green;
+  font-size: 1rem;
+  margin-top: 15px;
+}
+
+/* Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label */
+.login-label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #5d7a55;
+}
+
+/* Input */
+.login-input {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.login-input:focus {
+  border-color: #90Af87;
+  outline: none;
+}
+
+/* Button */
+.login-button {
+  height: 45px;
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #90Af87;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-button:hover:not(:disabled) {
+  background-color: #5d7a55;
+}
+
+.login-button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+/* Footer */
+.line a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.line a:hover {
+  text-decoration: underline;
+}
+
+/* Error message */
+.errmsg {
+  background-color: #f8d7da;
+  color: #842029;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #f5c2c7;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+/* Hướng dẫn nhập */
+.instructions {
+  font-size: 0.8rem;
+  border-radius: 5px;
+  background: #e9f5ff;
+  color: #0c5460;
+  padding: 5px 10px;
+  margin-top: 5px;
+}
+
+/* Icon trạng thái */
+.valid {
+  color: green;
+  margin-left: 5px;
+}
+
+.invalid {
+  color: red;
+  margin-left: 5px;
+}
+
+.hide {
+  display: none;
+}
+
+/* Ẩn cho screen reader */
+.offscreen {
+  position: absolute;
+  left: -9999px;
+}

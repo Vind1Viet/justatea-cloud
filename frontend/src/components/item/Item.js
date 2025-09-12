@@ -3,7 +3,7 @@ import './Item.css'
 import {Link} from 'react-router-dom'
 import alt_img from '../assets/alt_img.png'; // Placeholder image if product image fails to load
 
-const Item = ({ id, name, image, price, tag, inStock }) => {
+const Item = ({ id, name, image, price, stock }) => {
   return (
     
     <div className='item'>
@@ -11,7 +11,7 @@ const Item = ({ id, name, image, price, tag, inStock }) => {
         <img src={image} alt = ""/>
         <div className='item-info'>
             <h>{name}</h>
-            <p>{price}đ</p>
+            {stock>0? <p>{price}đ</p> : <p style={{color: 'red', fontWeight: 'bold'}}>Hết hàng</p>}
         </div>
       </Link>
     </div> 

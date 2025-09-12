@@ -1,0 +1,125 @@
+/* Container chính */
+.register-container {
+  width: 100%;
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.register-tittle {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #5d7a55;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label */
+.register-label {
+  display: block;
+  margin: 0.8rem 0 0.3rem;
+  font-weight: bold;
+  color: #5d7a55;
+}
+
+/* Input */
+.register-input {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.register-input:focus {
+  border-color: #90Af87;
+  outline: none;
+}
+
+/* Nút submit */
+.register-container .register-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 1.5rem;
+  background: #90Af87;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.register-container .submit-btn:hover:not(:disabled) {
+  background: #5d7a55;
+}
+
+.register-container .submit-btn:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+/* Error message */
+.register-container .errmsg {
+  background: #ffd4d4;
+  color: #a70000;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.register-container .offscreen {
+  display: none;
+}
+
+/* Icon check / times */
+.register-container .valid {
+  color: green;
+  margin-left: 5px;
+}
+
+.register-container .invalid {
+  color: red;
+  margin-left: 5px;
+}
+
+.register-container .hide {
+  display: none;
+}
+
+/* Hint/instructions */
+.register-container .instructions {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 4px;
+  background: #f5f5f5;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.register-container .instructions svg {
+  margin-right: 5px;
+  color: #0077ff;
+}
+
+/* Link login */
+.register-container .line a {
+  color: #0077ff;
+  text-decoration: none;
+}
+
+.register-container .line a:hover {
+  text-decoration: underline;
+}

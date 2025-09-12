@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import './Navbar.css';
 import logo from '../assets/logo.png';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import AuthContext from '../../contexts/AuthContext';
 
 const Navbar = () => {
+  const { auth } = useContext(AuthContext);
   const location = useLocation();
   const [menu, setMenu] = useState('home');
   const navRef = useRef();
@@ -34,6 +36,17 @@ const Navbar = () => {
           <Link to="/AddProduct" className="navbar-link">Thêm sản phẩm</Link>
           {location.pathname === '/AddProduct' ? <hr/>:<></>}
         </li>
+        {auth?.user ? (
+          <li>
+            <Link to="/Profile" className="navbar-link">Xin chào, {auth.user}</Link>
+            {location.pathname === '/Profile' ? <hr/>:<></>}
+          </li> 
+        ) : (
+          <li>
+            <Link to="/Login" className="navbar-link">Đăng nhập</Link>
+            {location.pathname === '/Login' ? <hr/>:<></>}
+          </li>
+        )}
       </ul>
     </div>
   );

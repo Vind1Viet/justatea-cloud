@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useContext } from 'react'
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './css/Login.css'
-import AuthContext from '../contexts/AuthContext'
+import { AuthContext } from '../contexts/AuthContext'
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
@@ -54,13 +54,22 @@ const Login = () => {
         body: JSON.stringify({ username: user, password: pwd }),
         credentials: 'include'
       })
+
+      if (!response.ok) {
+        if (response.status === 401) {
+          setErrMsg('Tên đăng nhập hoặc mật khẩu không đúng')
+        } else {
+          setErrMsg('Đăng nhập không thành công')
+        }
+        return
+      }
+      
       const data = await response.json();
-      console.log("Server response:", data);
+      
       const userId = data?.arguments?.userId;
       const accessToken = data?.arguments?.accessToken;
       const role = data?.arguments?.role;
-      console.log("Access Token:", accessToken);
-      console.log("Role:", role);
+      
       login(user, userId, accessToken, role)
       setSuccess(true)
       setUser('')

@@ -4,11 +4,12 @@ import Menu from "./pages/Menu";
 import Home from "./pages/Home";
 import About from './pages/About';
 import './App.css';
-import ProductDisplay from './components/productdisplay/ProductDisplay';
+import ProductDisplay from './components/productDisplay/ProductDisplay';
 import AddProduct from './pages/AddProduct';
 import Layout from './pages/Layout';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import Cart from './pages/Cart';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path='AddProduct' element={<AddProduct />} />
               <Route path='Register' element={<Register />} />
               <Route path='Login' element={<Login />} />
+              <Route path='Cart' element={<Cart />} />
             </Route>
           </Routes>
       </BrowserRouter>

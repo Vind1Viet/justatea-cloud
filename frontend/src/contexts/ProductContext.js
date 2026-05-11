@@ -54,3 +54,5 @@ export const ProductProvider = ({ children }) => {
         </ProductContext.Provider>
     );
 };
+
+export default ProductContext;

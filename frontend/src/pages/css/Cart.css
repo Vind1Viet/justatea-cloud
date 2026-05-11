@@ -1,0 +1,149 @@
+.cart-items{
+    margin:100px 50px;
+}
+
+.cart-items hr{
+    height: 3px;
+    background: black;
+    border: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.cart-items-header{
+    display:grid;
+    grid-template-columns: 1fr 2fr 1fr 2fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    gap: 50px;
+    padding: 10px 0px;
+    color: black;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.cart-items-item{
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.cart-item-icon{
+    width: 100px;
+    height: 100px;
+    cursor:pointer;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.cart-item-icon img{
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.cart-item-quanity{
+    width: 78px;
+    height: 50px;
+    border: 2px solid #ebebee;
+    background: #fefefe;
+}
+
+.change-button{
+    border: 2px solid #ebebee;
+    background: #fefefe;
+    width: 30px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.cart-items-down{
+    margin: 100px 0px;
+    display: flex;
+    gap: 90px
+}
+
+.cart-items-down img{
+    width: 50%;
+}
+
+.cart-items-total{
+    display: flex;
+    flex-direction: column;
+    flex:1;
+    font-size: 17px;
+    font-weight: 500;
+    gap: 10px;
+}
+
+.cart-items-total h2{
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.cart-items-item p{
+    margin-bottom: 0px;
+}
+
+.cart-items-total-price{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.cart-items-down button{
+    height: 70px;
+    width: 100%;
+    background: #5d7a55;
+    border: #90af87;
+    font-size: 18px;
+    font-family: 600;
+    color: #f6eed9;
+    margin-top: 10px;
+}
+
+.empty-cart{
+    font-size: 18px;
+    text-align: center;
+    font-weight: 600;
+    color:#5d7a55;
+    margin-top: 20px;
+}
+
+.empty-cart h1{
+    font-size: 30px;
+    text-align: center;
+    font-weight: 800;
+    color:#5d7a55;
+}
+
+.empty-cart img{
+   width: 300px;
+   margin-top: 20px;
+}
+
+.empty-cart button{
+    height: 65px;
+    width: 400px;
+    border-radius: 10px;
+    background: #5d7a55;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: #F6edd9;
+    margin-top: 30px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.empty-cart button:hover{
+    transform: scale(1.025);
+    transition: 0.6s;
+}
+
+.Loading{
+    font-size: 30px;
+    text-align: center;
+    font-weight: 800;
+    color:#5d7a55;
+}

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import './Navbar.css';
 import logo from '../assets/logo.png';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import AuthContext from '../../contexts/AuthContext';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Navbar = () => {
   const { auth } = useContext(AuthContext);
@@ -36,9 +36,13 @@ const Navbar = () => {
           <Link to="/AddProduct" className="navbar-link">Thêm sản phẩm</Link>
           {location.pathname === '/AddProduct' ? <hr/>:<></>}
         </li>
-        {auth?.user ? (
+        <li>
+          <Link to="/Cart" className="navbar-link">Giỏ hàng</Link>
+          {location.pathname === '/Cart' ? <hr/>:<></>}
+        </li>
+        {auth?.userName ? (
           <li>
-            <Link to="/Profile" className="navbar-link">Xin chào, {auth.user}</Link>
+            <Link to="/Profile" className="navbar-link">Xin chào, {auth.userName}</Link>
             {location.pathname === '/Profile' ? <hr/>:<></>}
           </li> 
         ) : (

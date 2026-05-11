@@ -1,7 +1,12 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+
+// Import routes
+import productsRoutes from './routes/productRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import cartRoutes from './routes/cartRoutes.js';
+import orderRoutes from './routes/orderRoute.js';
 
 dotenv.config();
 
@@ -12,12 +17,11 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Import routes
-import productsRoutes from './routes/productRoutes.js';
-
 // Mount routes
 app.use('/api/products', productsRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/cart', cartRoutes);
+app.use('/api/orders', orderRoutes);
 
 // Test route
 app.get("/", (req, res) => {

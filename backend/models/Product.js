@@ -1,16 +1,20 @@
 import pool from "../config/db.js";
 
 const Product = {
+  
+  // Get all products
   async getAll() {
     const [rows] = await pool.query("SELECT * FROM products");
     return rows;
   },
 
+  // Get product by ID
   async getById(id) {
     const [rows] = await pool.query("SELECT * FROM products WHERE id = ?", [id]);
     return rows[0] || null;
   },
 
+  // Create a new product
   async create(product) {
     const { name, image_url, category, description, price, stock } = product;
     const [result] = await pool.query(
@@ -20,6 +24,7 @@ const Product = {
     return { id: result.insertId, ...product };
   },
 
+  // Update an existing product
   async update(id, product) {
     const { name, image_url, category, description, price, stock } = product;
     const [result] = await pool.query(
@@ -29,6 +34,7 @@ const Product = {
     return { id, affectedRows: result.affectedRows, ...product };
   },
 
+  // Delete a product
   async delete(id) {
     const [result] = await pool.query("DELETE FROM products WHERE id = ?", [id]);
     return result.affectedRows;

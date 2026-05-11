@@ -1,12 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { AuthContext }  from '../../contexts/AuthContext';
 import { ProductContext } from '../../contexts/ProductContext';
+import { CartContext }  from '../../contexts/CartContext';
 import './ProductDisplay.css';
 import alt_img from '../assets/alt_img.png'; // Placeholder image if product image fails to load
 
 const ProductDisplay = () => {
   const { productID } = useParams(); // lấy productID từ URL
   const { products, loading } = useContext(ProductContext);
+  const { auth } = useContext(AuthContext);
+  const { addItem } = useContext(CartContext);
+  const navigate = useNavigate()
 
   const [selectedSize, setSelectedSize] = useState('Vừa');
   const [selectedToppings, setSelectedToppings] = useState([]);
@@ -44,6 +49,34 @@ const ProductDisplay = () => {
     newPrice += toppings.length * 5000;
     setPrice(newPrice);
   };
+
+   const handleAddToCart = async () => {
+    if (!auth?.accessToken) {
+      // alert("Bạn cần đăng nhập trước khi thêm sản phẩm vào giỏ hàng!");
+      navigate("/Login");
+      return;
+    }
+
+    const newItem = {
+      productId: product.id,
+      productName: product.name,
+      price: price,
+      quantity: 1,
+      size: selectedSize,
+      toppings: selectedToppings
+    };
+
+    console.log("Adding to cart:", newItem);
+
+    try {
+      await addItem(newItem);  // đợi API xong
+      alert("✅ Sản phẩm đã được thêm vào giỏ hàng!");
+    } catch (err) {
+      console.error("Error adding item:", err);
+      alert("❌ Không thể thêm sản phẩm vào giỏ hàng");
+    }
+  };
+
 
   if (loading) {
     return <div className="loading">Loading...</div>;
@@ -113,7 +146,11 @@ const ProductDisplay = () => {
         )}
 
         <p>Thành phần chính: {product.description || "Đang cập nhật..."}</p>
-        <button>Thêm vào giỏ hàng</button>
+        {product.stock > 0 ? (
+          <button onClick={handleAddToCart}>Thêm vào giỏ hàng</button>
+        ) : (
+          <button disabled>Hết hàng</button>
+        )}
       </div>
     </div>
   );

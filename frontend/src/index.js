@@ -4,6 +4,7 @@ import App from './App';
 import './index.css';
 import { ProductProvider } from './contexts/ProductContext';
 import { AuthProvider } from './contexts/AuthContext';
+import { CartProvider } from './contexts/CartContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -11,7 +12,9 @@ root.render(
   <React.StrictMode>
     <AuthProvider>
       <ProductProvider>
-        <App />
+        <CartProvider>
+          <App />
+        </CartProvider>
       </ProductProvider>
     </AuthProvider>
   </React.StrictMode>

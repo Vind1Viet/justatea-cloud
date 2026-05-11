@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
@@ -12,10 +12,12 @@ export const AuthProvider = ({ children }) => {
 
   const login = (userName, userId, accessToken, role) => {
     setAuth({ userName, userId, accessToken, role });
+    localStorage.setItem('token', accessToken);
   };
 
   const logout = () => {
     setAuth({ userName: '', userId: '', accessToken: '', role: '' });
+    localStorage.removeItem('token');
   };
 
   return (
@@ -24,5 +26,3 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-export default AuthContext;
